@@ -72,7 +72,7 @@ class Class_Redis
       }
       $conf = parse_ini_file(CONF_PATH, true);
 
-      if (!is_array($conf['redis:'.$instance])))
+      if (!is_array($conf['redis:'.$instance]))
       {
          throw new Exception("The connection elements must be in the section '[redis:$instance]'.");
       }

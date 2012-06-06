@@ -1,4 +1,4 @@
-#! /usr/local/bin/php5
+#! /usr/bin/php
 <?php
 
 /**

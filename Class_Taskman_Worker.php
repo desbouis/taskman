@@ -63,7 +63,7 @@ class Class_Taskman_Worker
                                 'WAITING_TIMEOUT'   => 'waiting_timeout',     // time in seconds the worker must wait to get data when the queue is empty
                                 'LOOP_SLEEP'        => 'loop_sleep',          // time in seconds the worker sleep between 2 connections to get data
                                 'ACTION'            => 'action',              // value of the execution to launch when the worker get data
-                                'ACTION_CPT'        => 'action_cpt'           // number of times the value of 'action' is executed
+                                'ACTION_CPT'        => 'action_cpt',          // number of times the value of 'action' is executed
                                 'TYPE'              => 'type'                 // how the worker works
                                 );
 

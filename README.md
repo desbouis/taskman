@@ -2,7 +2,7 @@ taskman
 =======
 
 Taskman is a redis queue management system with flexible worker daemon.
-Taskman is written in PHP and uses phpredis (https://github.com/nicolasff/phpredis) PHP module as Redis client.
+Taskman is written in PHP and uses phpredis (https://github.com/nicolasff/phpredis) PHP extension as Redis client.
 It was large inspired by the post "PHP Workers with Redis & Solo" (http://www.justincarmony.com/blog/2012/01/10/php-workers-with-redis-solo/)
 
 With Taskman, you add data in a queue and a worker daemon can pop this queue to give the data to an external script.
@@ -41,23 +41,23 @@ In this hash, attributes are defined in the class attributes '_workerKeys'.
 Informations stored are like this :
 
 ````javascript
-    worker:mytodo:server_1 = {
-                              status            = 'STARTED' | 'WAITING' | 'WORKING' | 'SLEEPING' | 'KILLED'
-                              status_changedate = '2012-03-10 22:01:23'
-                              start_date        = '2012-03-10 21:44:00'
-                              end_date          = '2012-03-10 22:47:00'
-                              waiting_timeout   = 10
-                              loop_sleep        = 10
-                              action            = echo "##data##" >> /tmp/worker.log
-                              action_cpt        = 2365
-                              type              = 'FIFO' | 'LIFO'
-                             }
+worker:mytodo:server_1 = {
+                          status            = 'STARTED' | 'WAITING' | 'WORKING' | 'SLEEPING' | 'KILLED'
+                          status_changedate = '2012-03-10 22:01:23'
+                          start_date        = '2012-03-10 21:44:00'
+                          end_date          = '2012-03-10 22:47:00'
+                          waiting_timeout   = 10
+                          loop_sleep        = 10
+                          action            = echo "##data##" >> /tmp/worker.log
+                          action_cpt        = 2365
+                          type              = 'FIFO' | 'LIFO'
+                         }
 ````
 
 You can then tune directly the worker by modifying some parameters with some redis commands :
 
 * to modify the time between 2 loops : HSET worker:mytodo:server_1 loop_sleep 2
-* to modify the waiting timeout : HSET worker:mytodo:server_1 waiting_timeout 20
+* to modify the waiting timeout on an empty queue : HSET worker:mytodo:server_1 waiting_timeout 20
 * to modify how the worker works : HSET worker:mytodo:server_1 type LIFO
 * to kill the worker : HSET worker:mytodo:server_1 end_date ""
 

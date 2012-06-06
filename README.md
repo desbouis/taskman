@@ -20,7 +20,7 @@ The queue
 ---------
 
 The task datas are stored using a 'list' type.
-The key name format is : '<prefix><separator><queue_name>', for instance : 'queue:mytodo'
+The key name format is : 'prefix:queue_name', for instance : 'queue:mytodo'
 
 This class is used by the Taskman_Worker class.
 
@@ -36,7 +36,7 @@ The worker
 ----------
 
 Workers informations are stored in redis using the 'hash' type.
-The key name format is : '<prefix>:<queue_name>:<worker_id>', for instance : 'worker:mytodo:server_1'
+The key name format is : 'prefix:queue_name:worker_id', for instance : 'worker:mytodo:server_1'
 In this hash, attributes are defined in the class attributes '_workerKeys'.
 Informations stored are like this :
 
